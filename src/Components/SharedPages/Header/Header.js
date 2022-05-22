@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => {
     return (
-        <div className='sticky top-0'>
+        <div className='sticky top-0 z-50'>
             <div className="navbar bg-cyan-700">
                 <div className="navbar-start">
                     <div className="dropdown">
