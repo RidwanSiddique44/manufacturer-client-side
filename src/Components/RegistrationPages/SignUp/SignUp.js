@@ -1,7 +1,7 @@
 import React from 'react';
 import auth from '../../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -50,7 +50,7 @@ const SignUp = () => {
                         </form>
                         <div className="text-grey-dark mt-6">
                             Already have an account?
-                            <a className="no-underline border-b border-blue text-blue-900" href="../login/">Log in </a>.
+                            <Link to="/signin" className="no-underline border-b border-blue text-blue-900"> Sign In </Link>.
                         </div>
                     </div>
 
