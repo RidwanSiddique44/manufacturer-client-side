@@ -2,6 +2,7 @@ import React from 'react';
 import auth from '../../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
+import Googlesignin from '../Googlesignin/Googlesignin';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -52,9 +53,8 @@ const SignUp = () => {
                             Already have an account?
                             <Link to="/signin" className="no-underline border-b border-blue text-blue-900"> Sign In </Link>.
                         </div>
+                        <Googlesignin></Googlesignin>
                     </div>
-
-
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import Googlesignin from '../Googlesignin/Googlesignin';
 
 const SignIn = () => {
     const [
@@ -44,9 +45,8 @@ const SignIn = () => {
                             Do not have an account?
                             <Link to="/signup" className="no-underline border-b border-blue text-blue-900"> Sign Up </Link>.
                         </div>
+                        <Googlesignin></Googlesignin>
                     </div>
-
-
                 </div>
             </div>
 
