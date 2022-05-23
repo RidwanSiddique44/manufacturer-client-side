@@ -1,8 +1,11 @@
 import React from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Googlesignin from '../Googlesignin/Googlesignin';
+import 'react-toastify/dist/ReactToastify.css';
+import Loading from '../../SharedPages/Loading/Loading';
+import { toast, ToastContainer } from 'react-toastify';
 
 const SignIn = () => {
     const [
@@ -17,6 +20,26 @@ const SignIn = () => {
         const password = e.target.password.value;
         signInWithEmailAndPassword(email, password);
     }
+    let errorText;
+    if (error) {
+        errorText = <p className='text-danger'>Error: {error?.message}</p>
+        toast.error(errorText);
+    }
+    const [sendResetEmail, sending] = useSendPasswordResetEmail(auth);
+    if (loading || sending) {
+        return <Loading></Loading>
+    }
+
+    const resetPassword = async (e) => {
+        const email = document.getElementById('e-value').value;
+        if (email) {
+            await sendResetEmail(email);
+            toast('Sending email...');
+        }
+        else {
+            toast.info('Please,Enter your email address!!');
+        }
+    }
     return (
         <div>
             <div className="bg-grey-lighter min-h-screen flex flex-col">
@@ -28,6 +51,7 @@ const SignIn = () => {
                                 type="text"
                                 className="block border border-grey-light w-full p-3 rounded mb-4"
                                 name="email"
+                                id='e-value'
                                 placeholder="Email" />
 
                             <input
@@ -43,13 +67,17 @@ const SignIn = () => {
                         </form>
                         <div className="text-grey-dark mt-6">
                             Do not have an account?
-                            <Link to="/signup" className="no-underline border-b border-blue text-blue-900"> Sign Up </Link>.
+                            <Link to="/signup" className="no-underline border-b border-blue text-blue-900"> Sign Up </Link>
+                        </div>
+                        <div className="text-grey-dark mt-6">
+                            Forgotten Password ?
+                            <button className="no-underline border-b border-blue text-blue-900" onClick={resetPassword}>Reset Password</button>
                         </div>
                         <Googlesignin></Googlesignin>
                     </div>
                 </div>
             </div>
-
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

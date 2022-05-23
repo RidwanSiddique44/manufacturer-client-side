@@ -3,12 +3,15 @@ import auth from '../../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import Googlesignin from '../Googlesignin/Googlesignin';
+import Loading from '../../SharedPages/Loading/Loading';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
     const navigate = useNavigate();
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const [createUserWithEmailAndPassword, user, loading, error,]
-        = useCreateUserWithEmailAndPassword(auth);
+        = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const handleSignup = async (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -17,6 +20,14 @@ const SignUp = () => {
         createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
         navigate('/home');
+    }
+    if (loading || updating) {
+        return <Loading></Loading>
+    }
+    let errorText;
+    if (error || updateError) {
+        errorText = <p className='text-danger'>Error: {error?.message}</p>
+        toast.error(errorText);
     }
 
     return (
@@ -57,6 +68,7 @@ const SignUp = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
