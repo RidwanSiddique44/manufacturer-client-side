@@ -1,11 +1,12 @@
 import React from 'react';
 import auth from '../../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Googlesignin from '../Googlesignin/Googlesignin';
 import Loading from '../../SharedPages/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -20,6 +21,12 @@ const SignUp = () => {
         createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
         navigate('/home');
+    }
+    const location = useLocation();
+    const [token, setToken] = useToken(user);
+    let from = location.state?.from?.pathname || "/";
+    if (user) {
+        navigate(from, { replace: true });
     }
     if (loading || updating) {
         return <Loading></Loading>

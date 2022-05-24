@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Googlesignin from '../Googlesignin/Googlesignin';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../SharedPages/Loading/Loading';
 import { toast, ToastContainer } from 'react-toastify';
+import useToken from '../../Hooks/useToken';
 
 const SignIn = () => {
     const [
@@ -19,6 +20,14 @@ const SignIn = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         signInWithEmailAndPassword(email, password);
+    }
+    const location = useLocation();
+    const [token, setToken] = useToken(user);
+    const navigate = useNavigate();
+
+    let from = location.state?.from?.pathname || "/";
+    if (user) {
+        navigate(from, { replace: true });
     }
     let errorText;
     if (error) {
