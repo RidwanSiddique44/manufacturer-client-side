@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
 
 const Purchase = () => {
@@ -14,6 +15,24 @@ const Purchase = () => {
             .then(res => res.json())
             .then(data => setItem(data))
     }, []);
+    const handlePurchase = (quantity, minOrder) => {
+        const orderValue = document.getElementById('quantity-item').value;
+        let orderQuantity = parseInt(orderValue);
+        let available = parseInt(quantity);
+        let minimum = parseInt(minOrder);
+        if (orderQuantity < minimum) {
+            document.getElementById('order-btn').disabled = true;
+            toast.error('Your order quantity is less than minimum quantity');
+        }
+        else if (orderQuantity > available) {
+            document.getElementById('order-btn').disabled = true;
+            toast.error('Your order quantity is greater than available quantity');
+        }
+    }
+    const enableButton = () => {
+        document.getElementById('order-btn').disabled = false;
+    }
+
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
@@ -56,15 +75,16 @@ const Purchase = () => {
                                 <label className="label">
                                     <span className="label-text">Quantity</span>
                                 </label>
-                                <input type="number" placeholder="Quantity" className="input input-bordered" />
+                                <input onFocus={enableButton} type="number" placeholder="Quantity" id='quantity-item' className="input input-bordered" />
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Order</button>
+                                <button onClick={() => handlePurchase(item.quantity, item.order)} id='order-btn' className="btn btn-primary">Order</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
