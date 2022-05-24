@@ -4,6 +4,7 @@ import './App.css';
 import Blogs from './Components/MainPages/Blogs/Blogs';
 import Home from './Components/MainPages/Home/Home';
 import NotFound from './Components/MainPages/NotFound/NotFound';
+import Purchase from './Components/MainPages/Purchase/Purchase';
 import RequireAuth from './Components/RegistrationPages/RequireAuth/RequireAuth';
 import SignIn from './Components/RegistrationPages/SignIn/SignIn';
 import SignUp from './Components/RegistrationPages/SignUp/SignUp';
@@ -21,6 +22,11 @@ function App() {
         <Route path="/blogs" element={
           <RequireAuth>
             <Blogs></Blogs>
+          </RequireAuth>
+        }></Route>
+        <Route path="/product/:Id" element={
+          <RequireAuth>
+            <Purchase></Purchase>
           </RequireAuth>
         }></Route>
         <Route path="/home" element={<Home></Home>}></Route>
