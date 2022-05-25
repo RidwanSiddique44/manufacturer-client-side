@@ -2,6 +2,9 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Blogs from './Components/MainPages/Blogs/Blogs';
+import AddProduct from './Components/MainPages/Dashboard/AdminPages/AddProduct';
+import ManageOrder from './Components/MainPages/Dashboard/AdminPages/ManageOrder';
+import ManageProduct from './Components/MainPages/Dashboard/AdminPages/ManageProduct';
 import Dashboard from './Components/MainPages/Dashboard/Dashboard';
 import AddReview from './Components/MainPages/Dashboard/UsersPage/AddReview';
 import MyOrders from './Components/MainPages/Dashboard/UsersPage/MyOrders';
@@ -9,6 +12,7 @@ import MyProfile from './Components/MainPages/Dashboard/UsersPage/MyProfile';
 import Home from './Components/MainPages/Home/Home';
 import NotFound from './Components/MainPages/NotFound/NotFound';
 import Purchase from './Components/MainPages/Purchase/Purchase';
+import RequireAdmin from './Components/RegistrationPages/RequireAdmin/RequireAdmin';
 import RequireAuth from './Components/RegistrationPages/RequireAuth/RequireAuth';
 import SignIn from './Components/RegistrationPages/SignIn/SignIn';
 import SignUp from './Components/RegistrationPages/SignUp/SignUp';
@@ -34,6 +38,9 @@ function App() {
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path="review" element={<AddReview></AddReview>}></Route>
           <Route path="profile" element={<MyProfile></MyProfile>}></Route>
+          <Route path="manageorder" element={<RequireAdmin><ManageOrder></ManageOrder></RequireAdmin>}></Route>
+          <Route path="addproduct" element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
+          <Route path="manageproduct" element={<RequireAdmin><ManageProduct></ManageProduct></RequireAdmin>}></Route>
         </Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="/signin" element={<SignIn></SignIn>}></Route>
