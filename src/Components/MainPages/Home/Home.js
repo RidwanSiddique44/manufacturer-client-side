@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useProducts from '../../Hooks/useProducts';
 import Banner from './Banner/Banner';
 import Contact from './ExtraSection/Contact';
@@ -8,9 +8,16 @@ import flags from '../../Images/icons/flags.png';
 import computer from '../../Images/icons/computer.png';
 import crowd from '../../Images/icons/crowd.png';
 import thumbs from '../../Images/icons/thumbs.png';
+import Reviews from './Reviews/Reviews';
 
 const Home = () => {
     const [products, setProducts] = useProducts();
+    const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/reviews')
+            .then(res => res.json())
+            .then(data => setReviews(data))
+    }, []);
     return (
         <div>
             <Banner></Banner>
@@ -62,6 +69,12 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
+
+                {
+                    reviews.map(review => <Reviews key={review._id} review={review} ></Reviews>)
+                }
             </div>
             <Extra></Extra>
             <div className="divider font-bold">Send Your Feedback</div>
