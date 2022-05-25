@@ -23,7 +23,7 @@ const AddReview = () => {
     };
     return (
         <div className='container border border-primary p-10'>
-            <h3 className="text-center font-bold text-2xl mb-3">Add Products</h3>
+            <h3 className="text-center font-bold text-2xl mb-3">Add Review</h3>
             <hr className="bg-secondary mb-5" />
             <form className='flex flex-col text-left ' onSubmit={handleSubmit(onSubmit)}>
                 <label>Your Email</label>
