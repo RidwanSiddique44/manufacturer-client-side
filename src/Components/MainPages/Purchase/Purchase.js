@@ -6,7 +6,6 @@ import auth from '../../../firebase.init';
 
 const Purchase = () => {
     const [user] = useAuthState(auth);
-    console.log(user)
     const { Id } = useParams();
     const [item, setItem] = useState({});
     useEffect(() => {
@@ -16,10 +15,18 @@ const Purchase = () => {
             .then(data => setItem(data))
     }, []);
     const handlePurchase = (quantity, minOrder) => {
+
+        const userAddress = document.getElementById('user-address').value;
         const orderValue = document.getElementById('quantity-item').value;
         let orderQuantity = parseInt(orderValue);
         let available = parseInt(quantity);
         let minimum = parseInt(minOrder);
+        const data = {
+            emai: user.email,
+            name: user.displayName,
+            quantity: orderValue,
+            address: userAddress
+        }
         if (orderQuantity < minimum) {
             document.getElementById('order-btn').disabled = true;
             toast.error('Your order quantity is less than minimum quantity');
@@ -27,6 +34,21 @@ const Purchase = () => {
         else if (orderQuantity > available) {
             document.getElementById('order-btn').disabled = true;
             toast.error('Your order quantity is greater than available quantity');
+        }
+        else {
+            const url = `http://localhost:5000/order`;
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result)
+                    alert("Order Successfully placed");
+                })
         }
     }
     const enableButton = () => {
@@ -57,19 +79,19 @@ const Purchase = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" placeholder="Name" value={user?.displayName} className="input input-bordered" />
+                                <input type="text" name='name' value={user?.displayName} className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" value={user?.email} className="input input-bordered" />
+                                <input type="email" name='email' value={user?.email} className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Address</span>
                                 </label>
-                                <input type="text" placeholder="Address" className="input input-bordered" />
+                                <input type="text" name='address' placeholder="Address" id='user-address' className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
