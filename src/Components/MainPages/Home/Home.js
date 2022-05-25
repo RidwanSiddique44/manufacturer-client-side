@@ -55,8 +55,8 @@ const Home = () => {
                                     <h1 className="text-xl font-bold">Do not hasitate to Contact us..</h1>
                                 </div>
                                 <div>
-                                    <button class="btn btn-primary lg:mr-4">Request for quote</button>
-                                    <button class="btn btn-secondary mt-4 lg:mt-0">Contact Us</button>
+                                    <button className="btn btn-primary lg:mr-4">Request for quote</button>
+                                    <button className="btn btn-secondary mt-4 lg:mt-0">Contact Us</button>
                                 </div>
                             </div>
                         </div>

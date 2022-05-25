@@ -18,7 +18,7 @@ const SignUp = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         const name = e.target.fullname.value;
-        createUserWithEmailAndPassword(email, password);
+        await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
         navigate('/home');
     }
