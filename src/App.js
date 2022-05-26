@@ -8,6 +8,7 @@ import MakeAdmin from './Components/MainPages/Dashboard/AdminPages/MakeAdmin/Mak
 import ManageOrder from './Components/MainPages/Dashboard/AdminPages/ManageOrder';
 import ManageProduct from './Components/MainPages/Dashboard/AdminPages/ManageProduct';
 import Dashboard from './Components/MainPages/Dashboard/Dashboard';
+import Payment from './Components/MainPages/Dashboard/Payment/Payment';
 import AddReview from './Components/MainPages/Dashboard/UsersPage/AddReview';
 import MyOrders from './Components/MainPages/Dashboard/UsersPage/MyOrders';
 import MyProfile from './Components/MainPages/Dashboard/UsersPage/MyProfile';
@@ -42,6 +43,7 @@ function App() {
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path="review" element={<AddReview></AddReview>}></Route>
           <Route path="profile" element={<MyProfile></MyProfile>}></Route>
+          <Route path="payment/:id" element={<Payment></Payment>}></Route>
           <Route path="manageorder" element={<RequireAdmin><ManageOrder></ManageOrder></RequireAdmin>}></Route>
           <Route path="addproduct" element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
           <Route path="makeAdmin" element={<RequireAdmin><MakeAdmin></MakeAdmin></RequireAdmin>}></Route>

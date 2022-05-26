@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ManageOrder = () => {
     const [allOrder, setAllOrder] = useState([]);
@@ -7,6 +8,9 @@ const ManageOrder = () => {
             .then(res => res.json())
             .then(data => setAllOrder(data))
     }, []);
+    const handleshiping = () => {
+        document.getElementById('ship').innerText = 'Shipped';
+    }
     return (
         <div>
             <h1 className="font-bold text-4xl mb-3">Your Order</h1>
@@ -20,7 +24,9 @@ const ManageOrder = () => {
                                     <th>Name</th>
                                     <th>Product Name</th>
                                     <th>Quantity</th>
+                                    <th>price</th>
                                     <th>Location</th>
+                                    <th>Payment Status</th>
 
 
                                 </tr>
@@ -31,7 +37,12 @@ const ManageOrder = () => {
                                     <td>{order.name}</td>
                                     <td>{order.item}</td>
                                     <td>{order.quantity}</td>
+                                    <td>{order.price}</td>
                                     <td>{order.address}</td>
+                                    <td>
+                                        {(order.price && !order.paid) && <button className='btn btn-xs btn-success'>Unpaid</button>}
+                                        {(order.price && order.paid) && <button onClick={handleshiping} id='ship' className='btn btn-xs btn-success'>Pending</button>}
+                                    </td>
 
 
                                 </tr>

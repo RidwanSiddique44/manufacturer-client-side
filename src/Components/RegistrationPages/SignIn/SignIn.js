@@ -26,7 +26,7 @@ const SignIn = () => {
     const navigate = useNavigate();
 
     let from = location.state?.from?.pathname || "/";
-    if (user) {
+    if (token) {
         navigate(from, { replace: true });
     }
     let errorText;

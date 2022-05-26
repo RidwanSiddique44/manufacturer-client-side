@@ -25,7 +25,7 @@ const SignUp = () => {
     const location = useLocation();
     const [token, setToken] = useToken(user);
     let from = location.state?.from?.pathname || "/";
-    if (user) {
+    if (token) {
         navigate(from, { replace: true });
     }
     if (loading || updating) {
