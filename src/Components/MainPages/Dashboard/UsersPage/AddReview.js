@@ -7,7 +7,7 @@ const AddReview = () => {
     const [user] = useAuthState(auth);
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        const url = `http://localhost:5000/reviews`;
+        const url = `https://dry-bayou-43305.herokuapp.com/reviews`;
         fetch(url, {
             method: 'POST',
             headers: {

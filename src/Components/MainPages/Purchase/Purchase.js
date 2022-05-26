@@ -9,7 +9,7 @@ const Purchase = () => {
     const { Id } = useParams();
     const [item, setItem] = useState({});
     useEffect(() => {
-        const url = `http://localhost:5000/products/${Id}`
+        const url = `https://dry-bayou-43305.herokuapp.com/products/${Id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setItem(data))
@@ -39,7 +39,7 @@ const Purchase = () => {
             toast.error('Your order quantity is greater than available quantity');
         }
         else {
-            const url = `http://localhost:5000/order`;
+            const url = `https://dry-bayou-43305.herokuapp.com/order`;
             fetch(url, {
                 method: 'POST',
                 headers: {

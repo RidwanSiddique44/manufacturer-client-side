@@ -12,7 +12,7 @@ const MyOrders = () => {
     useEffect(() => {
         const myOrders = async () => {
             const email = user?.email;
-            const url = `http://localhost:5000/order?email=${email}`;
+            const url = `https://dry-bayou-43305.herokuapp.com/order?email=${email}`;
             try {
                 const { data } = await axiosPrivate.get(url);
                 setOrders(data);
@@ -32,7 +32,7 @@ const MyOrders = () => {
     const handleDelete = id => {
         const confirm = window.confirm('Are you sure to detele it?');
         if (confirm) {
-            const url = `http://localhost:5000/order/${id}`;
+            const url = `https://dry-bayou-43305.herokuapp.com/order/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -51,8 +51,8 @@ const MyOrders = () => {
             <h1 className="font-bold text-4xl mb-3">Your Order</h1>
             {
                 orders.map(order => <div key={order._id} >
-                    <div class="overflow-x-auto">
-                        <table class="table table-compact w-full">
+                    <div className="overflow-x-auto">
+                        <table className="table table-compact w-full">
                             <thead>
                                 <tr>
 
@@ -88,6 +88,16 @@ const MyOrders = () => {
                     </div>
                 </div>)
             }
+            <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+            <div className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Congratulations random Interner user!</h3>
+                    <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+                    <div className="modal-action">
+                        <label htmlFor="my-modal-6" className="btn">Yay!</label>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

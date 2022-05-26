@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ManageOrder = () => {
     const [allOrder, setAllOrder] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/allorder')
+        fetch('https://dry-bayou-43305.herokuapp.com/allorder')
             .then(res => res.json())
             .then(data => setAllOrder(data))
     }, []);

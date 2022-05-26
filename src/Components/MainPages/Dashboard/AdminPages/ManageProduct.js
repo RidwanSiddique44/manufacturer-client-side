@@ -6,7 +6,7 @@ const ManageProduct = () => {
     const handleDelete = id => {
         const confirm = window.confirm('Are you sure to detele it?');
         if (confirm) {
-            const url = `http://localhost:5000/products/${id}`;
+            const url = `https://dry-bayou-43305.herokuapp.com/products/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

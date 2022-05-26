@@ -15,7 +15,7 @@ const MyProfile = () => {
     useEffect(() => {
         const myProducts = async () => {
             const email = user?.email;
-            const url = `http://localhost:5000/user?email=${email}`;
+            const url = `https://dry-bayou-43305.herokuapp.com/user?email=${email}`;
             try {
                 const { data } = await axiosPrivate.get(url);
                 setMyInfo(data);
@@ -31,7 +31,7 @@ const MyProfile = () => {
         myProducts();
     }, [info])
     const onSubmit = data => {
-        const url = `http://localhost:5000/user`;
+        const url = `https://dry-bayou-43305.herokuapp.com/user`;
         fetch(url, {
             method: 'POST',
             headers: {

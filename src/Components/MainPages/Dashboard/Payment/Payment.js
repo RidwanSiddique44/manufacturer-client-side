@@ -11,7 +11,7 @@ const stripePromise = loadStripe('pk_test_51L3gWaFiyT9HDzqxkkd2Zy03Vyxnei0NVSztr
 
 const Payment = () => {
     const { id } = useParams();
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://dry-bayou-43305.herokuapp.com/order/${id}`;
 
     const { data: order, isLoading } = useQuery(['order', id], () => fetch(url, {
         method: 'GET',

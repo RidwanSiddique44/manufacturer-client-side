@@ -14,13 +14,14 @@ const Home = () => {
     const [products, setProducts] = useProducts();
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://dry-bayou-43305.herokuapp.com/reviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, []);
     return (
         <div>
             <Banner></Banner>
+            <div className="divider font-bold">Our Products</div>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
 
                 {
@@ -70,6 +71,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <div className="divider font-bold">All User Review</div>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
 
                 {
