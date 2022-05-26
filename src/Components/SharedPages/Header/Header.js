@@ -25,6 +25,7 @@ const Header = () => {
                             {
                                 user && <li><Link to="/dashboard">Dashboard</Link></li>
                             }
+                            <li><Link to="/">User: {user?.displayName}</Link></li>
                             <li>{user ? <button className="btn btn-ghost" onClick={handleSignOut} >Sign Out</button> : <Link to="/signin">Sign In</Link>}</li>
                         </ul>
                     </div>
@@ -42,6 +43,7 @@ const Header = () => {
                             {
                                 user && <li><Link to="/dashboard">Dashboard</Link></li>
                             }
+                            <li><Link to="/">User: {user?.displayName}</Link></li>
                             <li>{user ? <button className="btn btn-ghost" onClick={handleSignOut} >Sign Out</button> : <Link to="/signin">Sign In</Link>}</li>
                         </ul>
                     </div>

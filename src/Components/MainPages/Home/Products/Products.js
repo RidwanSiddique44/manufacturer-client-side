@@ -21,7 +21,7 @@ const Products = (props) => {
                     <p className='font-bold'>Available Quantity: {quantity}</p>
                     <p className='font-bold'>Minimum Order Quantity: {order}</p>
                     <div className="card-actions">
-                        <button onClick={() => navigateToPurchase(_id)} className="btn btn-primary">Buy Now</button>
+                        <button onClick={() => navigateToPurchase(_id)} className="btn btn-primary">Purchase Now</button>
                     </div>
                 </div>
             </div>

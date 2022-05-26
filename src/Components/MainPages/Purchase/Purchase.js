@@ -14,7 +14,7 @@ const Purchase = () => {
             .then(res => res.json())
             .then(data => setItem(data))
     }, []);
-    const handlePurchase = (quantity, minOrder) => {
+    const handlePurchase = (quantity, minOrder, itemName) => {
 
         const userAddress = document.getElementById('user-address').value;
         const orderValue = document.getElementById('quantity-item').value;
@@ -22,8 +22,9 @@ const Purchase = () => {
         let available = parseInt(quantity);
         let minimum = parseInt(minOrder);
         const data = {
-            emai: user.email,
+            email: user.email,
             name: user.displayName,
+            item: itemName,
             quantity: orderValue,
             address: userAddress
         }
@@ -100,7 +101,7 @@ const Purchase = () => {
                                 <input onFocus={enableButton} type="number" placeholder="Quantity" id='quantity-item' className="input input-bordered" />
                             </div>
                             <div className="form-control mt-6">
-                                <button onClick={() => handlePurchase(item.quantity, item.order)} id='order-btn' className="btn btn-primary">Order</button>
+                                <button onClick={() => handlePurchase(item.quantity, item.order, item.name)} id='order-btn' className="btn btn-primary">Order</button>
                             </div>
                         </div>
                     </div>
